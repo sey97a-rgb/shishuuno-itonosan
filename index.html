@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ししゅうのイトノさん｜あなたの絵が、刺繍ワッペンになる</title>
+<meta name="description" content="あなたが描いたらくがきを、刺繍ワッペンにします。沖縄発のハンドメイド刺繍ブランド「ししゅうのイトノさん」">
+<meta property="og:title" content="ししゅうのイトノさん｜あなたの絵が、刺繍ワッペンになる">
+<meta property="og:description" content="あなたが描いたらくがきを、刺繍ワッペンにします。沖縄発・先行予約受付中！">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-bg: #fff8f3;
+  --color-primary: #ff7eb3;
+  --color-accent: #ffb347;
+  --color-green: #7ec8a0;
+  --color-blue: #7eb8e8;
+  --color-text: #3d3d3d;
+  --color-light: #fff0e8;
+  --font-main: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-main); background: var(--color-bg); color: var(--color-text); overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+
+/* Header */
+header { position: sticky; top: 0; z-index: 100; background: rgba(255,248,243,0.95); backdrop-filter: blur(8px); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.logo { font-size: 1.1rem; font-weight: 700; color: var(--color-primary); }
+nav a { margin-left: 20px; font-size: 0.9rem; color: var(--color-text); }
+.btn-reserve { background: var(--color-primary); color: #fff; padding: 8px 18px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; }
+
+/* Hero */
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 24px 60px; position: relative; overflow: hidden; background: linear-gradient(160deg, #fff8f3 0%, #fff0fb 50%, #f0f8ff 100%); }
+.hero-deco { position: absolute; border-radius: 50%; opacity: 0.25; }
+.deco1 { width: 320px; height: 320px; background: #ffe0b2; top: -80px; left: -100px; }
+.deco2 { width: 220px; height: 220px; background: #e8f5e9; top: 60px; right: -60px; }
+.deco3 { width: 180px; height: 180px; background: #e3f2fd; bottom: 40px; left: 10%; }
+.deco4 { width: 140px; height: 140px; background: #fce4ec; bottom: -40px; right: 15%; }
+.hero-content { position: relative; z-index: 1; max-width: 640px; }
+.hero-label { font-size: 0.95rem; color: #888; margin-bottom: 12px; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.4; margin-bottom: 20px; }
+.hero h1 em { color: var(--color-primary); font-style: normal; }
+.hero-desc { font-size: 1rem; line-height: 1.9; color: #666; margin-bottom: 10px; }
+.hero-sub { font-size: 0.88rem; color: #aaa; margin-bottom: 36px; }
+.hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+.btn-main { background: linear-gradient(135deg, #ff7eb3, #ff9a9e); color: #fff; padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 4px 20px rgba(255,126,179,0.4); transition: transform 0.2s; }
+.btn-main:hover { transform: translateY(-2px); }
+.btn-line { background: #06C755; color: #fff; padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 4px 20px rgba(6,199,85,0.3); transition: transform 0.2s; }
+.btn-line:hover { transform: translateY(-2px); }
+.hero-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.badge { border: 2px solid; border-radius: 50px; padding: 6px 18px; font-size: 0.85rem; font-weight: 500; }
+.badge-pink { border-color: var(--color-primary); color: var(--color-primary); }
+.badge-blue { border-color: var(--color-blue); color: var(--color-blue); }
+.badge-green { border-color: var(--color-green); color: var(--color-green); }
+
+/* Brand Section */
+#brand { background: #fff; padding: 80px 24px; text-align: center; }
+.section-icon { font-size: 2.5rem; margin-bottom: 16px; }
+.section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 32px; }
+.brand-text { max-width: 600px; margin: 0 auto 32px; font-size: 1rem; line-height: 2; color: #555; }
+.brand-tags { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.tag { background: var(--color-light); border-radius: 50px; padding: 8px 20px; font-size: 0.9rem; font-weight: 500; }
+
+/* Reserve Section */
+#reserve { background: linear-gradient(135deg, #fff0f8 0%, #f0f8ff 50%, #f0fff4 100%); padding: 80px 24px; text-align: center; }
+.reserve-badge { display: inline-block; background: linear-gradient(135deg, #ffe082, #ffca28); border-radius: 50px; padding: 6px 24px; font-weight: 700; font-size: 0.9rem; color: #7a5c00; margin-bottom: 24px; }
+.reserve-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; }
+.reserve-desc { color: #777; margin-bottom: 32px; }
+.reserve-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* Footer */
+footer { background: #2d2d2d; color: #ccc; padding: 48px 24px; text-align: center; }
+.footer-logo { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 20px; }
+.footer-sns { display: flex; gap: 20px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+.footer-sns a { color: #aaa; font-size: 0.9rem; transition: color 0.2s; }
+.footer-sns a:hover { color: #fff; }
+.footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; }
+.footer-links a { color: #aaa; font-size: 0.85rem; }
+.footer-links a:hover { color: #fff; }
+.footer-copy { font-size: 0.8rem; color: #666; }
+
+@media (max-width: 640px) {
+  header { padding: 10px 16px; }
+  nav a:not(.btn-reserve) { display: none; }
+  .hero-btns, .reserve-btns { flex-direction: column; align-items: center; }
+  .btn-main, .btn-line { width: 100%; max-width: 300px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🧵 ししゅうのイトノさん</div>
+  <nav>
+    <a href="#brand">イトノさんとは</a>
+    <a href="https://lin.ee/ttdya8W" class="btn-reserve">先行予約 ✨</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-deco deco1"></div>
+  <div class="hero-deco deco2"></div>
+  <div class="hero-deco deco3"></div>
+  <div class="hero-deco deco4"></div>
+  <div class="hero-content">
+    <p class="hero-label">ししゅうのイトノさん</p>
+    <h1>あなたの<em>らくがき</em>が、<br>刺繍ワッペンになる。</h1>
+    <p class="hero-desc">描いた絵を送るだけ。<br>イトノさんが、あなたの絵をひと針ひと針、<br>世界にひとつだけのワッペンにします。</p>
+    <p class="hero-sub">📍 沖縄からお届けするハンドメイド刺繍ブランド</p>
+    <div class="hero-btns">
+      <a href="https://lin.ee/ttdya8W" class="btn-main">先行予約はこちら ✨</a>
+      <a href="https://lin.ee/ttdya8W" class="btn-line">LINE で友だち追加 💬</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge badge-pink">✏️ 絵が下手でもOK</span>
+      <span class="badge badge-blue">🧵 1枚から注文可</span>
+      <span class="badge badge-green">📦 沖縄から全国配送</span>
+    </div>
+  </div>
+</section>
+
+<section id="brand">
+  <div class="section-icon">🧵</div>
+  <h2 class="section-title">イトノさんって、だれ？</h2>
+  <div class="brand-text">
+    <p>「ししゅうのイトノさん」は、沖縄生まれの小さな刺繍ブランドです。</p>
+    <br>
+    <p>あなたが描いた絵やお子さまのらくがき、ペットの似顔絵――<br>どんな絵でも、イトノさんが刺繍ワッペンに仕上げます。</p>
+    <br>
+    <p>うまい絵じゃなくていい。<br>「らくがき」の味わいこそが、世界にひとつだけの魅力になる。</p>
+    <br>
+    <p>あなたの絵を、イトノさんに送ってみませんか？</p>
+  </div>
+  <div class="brand-tags">
+    <span class="tag">✏️ らくがきを送るだけ</span>
+    <span class="tag">🧵 ひと針ひと針手づくり</span>
+    <span class="tag">🏝️ 沖縄発</span>
+    <span class="tag">🎨 シール＋アイロン2WAY</span>
+  </div>
+</section>
+
+<section id="reserve">
+  <div class="reserve-badge">🎉 先行予約受付中！</div>
+  <h2 class="reserve-title">あなたの応援で、イトノさんの刺繍機が動き出します</h2>
+  <p class="reserve-desc">梅・竹・松の3プランから選べます。まずはプランをチェック！</p>
+  <div class="reserve-btns">
+    <a href="https://lin.ee/ttdya8W" class="btn-main">プランを見る →</a>
+    <a href="https://lin.ee/ttdya8W" class="btn-line">LINE で相談する 💬</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">🧵 ししゅうのイトノさん</div>
+  <div class="footer-sns">
+    <a href="https://www.instagram.com/itono_shisyu/">Instagram</a>
+    <a href="https://www.tiktok.com/@itono_shisyu">TikTok</a>
+    <a href="https://www.threads.net/@itono_shisyu">Threads</a>
+    <a href="https://lin.ee/ttdya8W">公式LINE</a>
+  </div>
+  <div class="footer-links">
+    <a href="tokushoho.html">特定商取引法に基づく表記</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </div>
+  <p class="footer-copy">運営：株式会社DAYS<br>© 2026 DAYS Inc. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
