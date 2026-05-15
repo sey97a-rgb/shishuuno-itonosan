@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ししゅうのいとのさん｜お子さんのらくがきが、世界に一つのワッペンに。</title>
+<title>ししゅうの森｜お子さんのらくがきが、世界に一つのワッペンに。</title>
 <meta name="description" content="お子さんが描いたらくがきを、刺繍ワッペンに。沖縄から始まる、世界に一つの宝物づくり。">
-<meta property="og:title" content="ししゅうのいとのさん｜お子さんのらくがきが、ワッペンに。">
+<meta property="og:title" content="ししゅうの森｜お子さんのらくがきが、ワッペンに。">
 <meta property="og:description" content="らくがきがワッペンになる、世界に一つのサービス。">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,22 +14,25 @@
 
 <style>
 :root {
-  /* パステルカラーパレット */
-  --pink: #ffc4d6;
-  --pink-deep: #ff8fab;
-  --sky: #b4dceb;
-  --sky-deep: #7ac3dc;
-  --cream: #fff5e1;
-  --cream-deep: #ffe9b3;
-  --mint: #c1e8d3;
-  --lavender: #d5c5e8;
-  --yellow: #ffd966;
+  /* 森のカラーパレット（どうぶつの森風） */
+  --leaf: #a8d68a;        /* 若葉 */
+  --leaf-deep: #6fa84a;   /* 深緑 */
+  --moss: #c4dfa7;        /* 苔色 */
+  --bark: #8b6f47;        /* 木の幹 */
+  --bark-light: #c9a87b;  /* 明るい木 */
+  --cream: #fef5dc;       /* やわらかクリーム */
+  --cream-deep: #ffe9b3;  /* 濃いクリーム */
+  --honey: #ffd966;       /* はちみつ色 */
+  --honey-deep: #f5b94a;  /* 濃いはちみつ */
+  --apple: #f08a7a;       /* りんご色（アクセント） */
+  --sky: #d4ebf4;         /* 空色（柔らかい） */
+  --berry: #c98ab8;       /* 木の実 */
 
-  --ink: #4a3a30;
-  --ink-soft: #7a6b5f;
-  --ink-faint: #a89a8e;
-  --line: #e5d9c3;
-  --bg: #fff9ef;
+  --ink: #5a4838;         /* 茶色のインク */
+  --ink-soft: #8b7864;
+  --ink-faint: #b5a48d;
+  --line: #d4c4a3;
+  --bg: #fdf8e8;          /* 暖かいクリーム背景 */
 
   --rounded: 'M PLUS Rounded 1c', 'Kosugi Maru', sans-serif;
   --en: 'Fredoka', sans-serif;
@@ -55,36 +58,53 @@ p { text-wrap: pretty; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; }
 @media (max-width: 720px) { .container { padding: 0 18px; } }
 
-/* ── 背景の装飾雲（やわらかい雰囲気） ── */
-.bg-clouds {
+/* ── 背景の森装飾 ── */
+.bg-forest {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
 }
-.bg-clouds::before, .bg-clouds::after {
+.bg-forest::before, .bg-forest::after {
   content: "";
   position: absolute;
   border-radius: 50%;
-  filter: blur(40px);
-  opacity: 0.5;
+  filter: blur(50px);
+  opacity: 0.4;
 }
-.bg-clouds::before {
-  width: 600px; height: 400px;
-  background: var(--pink);
-  top: 10%; left: -10%;
+.bg-forest::before {
+  width: 600px; height: 500px;
+  background: var(--leaf);
+  top: 5%; left: -150px;
   animation: bgFloat 18s ease-in-out infinite;
 }
-.bg-clouds::after {
+.bg-forest::after {
   width: 500px; height: 400px;
-  background: var(--sky);
-  top: 60%; right: -10%;
+  background: var(--honey);
+  top: 50%; right: -120px;
   animation: bgFloat 22s ease-in-out infinite reverse;
 }
 @keyframes bgFloat {
   0%, 100% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(40px, -30px) scale(1.1); }
+}
+
+/* 飛んでる葉っぱアニメ */
+.flying-leaf {
+  position: fixed;
+  font-size: 28px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+  animation: flyAcross 25s linear infinite;
+}
+.flying-leaf:nth-child(2) { animation-delay: -8s; animation-duration: 30s; top: 20%; font-size: 20px; }
+.flying-leaf:nth-child(3) { animation-delay: -15s; animation-duration: 35s; top: 60%; font-size: 24px; }
+@keyframes flyAcross {
+  0% { left: -50px; top: 30%; transform: rotate(0deg); }
+  50% { top: 45%; }
+  100% { left: 110vw; top: 30%; transform: rotate(360deg); }
 }
 
 /* ── ヘッダー ── */
@@ -93,25 +113,25 @@ header {
   z-index: 100;
   padding: 14px 28px;
   display: flex; justify-content: space-between; align-items: center;
-  background: rgba(255, 249, 239, 0.95);
-  border-bottom: 2px dashed var(--line);
+  background: rgba(253, 248, 232, 0.95);
+  border-bottom: 3px dashed var(--leaf);
 }
 .logo {
   font-family: var(--rounded);
   font-weight: 800;
   font-size: 18px;
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   letter-spacing: 0.04em;
   display: flex; align-items: center; gap: 8px;
+  text-decoration: none;
 }
 .logo-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 38px; height: 38px;
-  background: var(--cream-deep);
-  border: 2px solid var(--ink);
+  display: inline-grid; place-items: center;
+  width: 40px; height: 40px;
+  background: var(--cream);
+  border: 2.5px solid var(--ink);
   border-radius: 50%;
-  font-size: 18px;
+  font-size: 20px;
 }
 .logo small {
   font-family: var(--en);
@@ -123,7 +143,7 @@ header {
   margin-top: 2px;
 }
 .header-cta {
-  background: var(--pink-deep);
+  background: var(--apple);
   color: white;
   font-family: var(--rounded);
   font-weight: 700;
@@ -132,42 +152,36 @@ header {
   border-radius: 999px;
   text-decoration: none;
   transition: all 0.3s;
-  box-shadow: 0 4px 0 #d96687;
+  box-shadow: 0 4px 0 #c46d5e;
+  border: 2px solid var(--ink);
 }
 .header-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 0 #d96687;
+  box-shadow: 0 6px 0 #c46d5e;
 }
 @media (max-width: 640px) {
   header { padding: 12px 16px; }
   .logo { font-size: 14px; }
   .logo small { display: none; }
-  .logo-mark { width: 32px; height: 32px; font-size: 15px; }
+  .logo-mark { width: 34px; height: 34px; font-size: 16px; }
   .header-cta { padding: 8px 14px; font-size: 11px; }
 }
 
 /* ── ヒーローセクション ── */
 .hero {
   position: relative;
-  padding: 130px 0 80px;
+  padding: 140px 0 80px;
   background: linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
   overflow: hidden;
 }
-.hero::before, .hero::after {
-  content: ""; position: absolute;
-  border-radius: 50%;
-}
 .hero::before {
-  width: 200px; height: 200px;
-  background: var(--pink);
-  top: 100px; left: -80px;
-  opacity: 0.4;
-}
-.hero::after {
-  width: 240px; height: 240px;
-  background: var(--sky);
-  bottom: 40px; right: -90px;
-  opacity: 0.4;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(168, 214, 138, 0.3), transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(255, 217, 102, 0.25), transparent 50%);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -176,30 +190,27 @@ header {
   text-align: center;
 }
 
-.kids-badge {
-  display: inline-block;
-  background: var(--yellow);
-  color: var(--ink);
-  font-weight: 800;
-  font-size: 13px;
-  padding: 8px 20px;
-  border-radius: 999px;
-  margin-bottom: 24px;
-  transform: rotate(-3deg);
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-  letter-spacing: 0.05em;
+/* 森の枝飾り */
+.hero-branches {
+  position: absolute;
+  top: 80px; left: 0; right: 0;
+  height: 60px;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  opacity: 0.5;
 }
 
-/* ── ローンチバナー ── */
 .launch-banner {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  background: linear-gradient(135deg, var(--pink-deep) 0%, #ff6b97 100%);
+  background: linear-gradient(135deg, var(--leaf-deep) 0%, #4a8a3a 100%);
   color: white;
   padding: 14px 28px;
-  border-radius: 16px;
+  border-radius: 999px;
   border: 3px solid var(--ink);
   box-shadow: 5px 5px 0 var(--ink);
   margin-bottom: 18px;
@@ -212,19 +223,19 @@ header {
   50% { transform: translateY(-3px); box-shadow: 5px 8px 0 var(--ink); }
 }
 .launch-banner::before {
-  content: "🎉";
+  content: "🌳";
   font-size: 22px;
-  animation: launchSpin 3s ease-in-out infinite;
+  animation: leafSway 3s ease-in-out infinite;
 }
-@keyframes launchSpin {
-  0%, 100% { transform: rotate(-15deg); }
-  50% { transform: rotate(15deg); }
+@keyframes leafSway {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
 }
 .launch-date {
   font-family: var(--en);
   font-size: 22px;
   font-weight: 700;
-  color: var(--yellow);
+  color: var(--honey);
   line-height: 1;
 }
 .launch-text {
@@ -244,9 +255,24 @@ header {
   white-space: nowrap;
 }
 @media (max-width: 540px) {
-  .launch-banner { flex-direction: column; padding: 12px 20px; gap: 4px; }
+  .launch-banner { flex-direction: column; padding: 12px 20px; gap: 4px; border-radius: 18px; }
   .launch-date { font-size: 18px; }
   .launch-desc { font-size: 13px; }
+}
+
+.kids-badge {
+  display: inline-block;
+  background: var(--honey);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+  transform: rotate(-3deg);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  letter-spacing: 0.05em;
 }
 
 .hero h1 {
@@ -259,7 +285,7 @@ header {
   color: var(--ink);
 }
 .hero h1 .accent {
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   position: relative;
   display: inline-block;
 }
@@ -269,13 +295,13 @@ header {
   left: -4px; right: -4px;
   bottom: 4px;
   height: 12px;
-  background: var(--yellow);
+  background: var(--honey);
   opacity: 0.5;
   z-index: -1;
   border-radius: 4px;
 }
 .hero h1 .underline-wavy {
-  text-decoration: underline wavy var(--sky-deep) 3px;
+  text-decoration: underline wavy var(--apple) 3px;
   text-underline-offset: 6px;
 }
 
@@ -287,18 +313,7 @@ header {
   line-height: 2;
 }
 
-/* ヒーロー大ビジュアル：らくがき→ワッペン */
-.hero-visual {
-  margin: 40px auto 36px;
-  max-width: 700px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 16px;
-  align-items: center;
-  padding: 0 16px;
-}
-
-/* ──────────── ヒーロー大判写真（新） ──────────── */
+/* ヒーロー大判ビジュアル */
 .hero-photo-wrap {
   position: relative;
   max-width: 720px;
@@ -315,18 +330,43 @@ header {
   aspect-ratio: 16/10;
 }
 .hero-photo img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   display: block;
   filter: saturate(1.05);
 }
-.hero-photo::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(255,245,225,0.15) 100%);
-  pointer-events: none;
+
+/* ヒーローの動物たち */
+.hero-animal {
+  position: absolute;
+  z-index: 3;
+  width: 90px; height: 90px;
 }
+.hero-animal-bear {
+  top: -25px; left: -10px;
+  transform: rotate(-10deg);
+  animation: animalBob 4s ease-in-out infinite;
+}
+.hero-animal-bunny {
+  bottom: -20px; right: 10px;
+  transform: rotate(8deg);
+  animation: animalBob 5s ease-in-out infinite;
+}
+.hero-animal-bird {
+  top: 30%; right: -25px;
+  width: 70px; height: 70px;
+  transform: rotate(15deg);
+  animation: birdHop 3s ease-in-out infinite;
+}
+@keyframes animalBob {
+  0%, 100% { transform: rotate(var(--rot, 0deg)) translateY(0); }
+  50% { transform: rotate(var(--rot, 0deg)) translateY(-8px); }
+}
+@keyframes birdHop {
+  0%, 100% { transform: rotate(15deg) translateY(0); }
+  50% { transform: rotate(20deg) translateY(-10px); }
+}
+.hero-animal svg { width: 100%; height: 100%; }
 
 /* 浮かぶBefore/Afterミニカード */
 .hero-mini {
@@ -344,20 +384,20 @@ header {
   font-family: var(--en);
   font-weight: 600;
   font-size: 10px;
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   text-align: center;
   letter-spacing: 0.1em;
   margin-bottom: 4px;
 }
 .hero-mini-before {
-  top: 10%;
-  left: -20px;
+  top: 15%;
+  left: -30px;
   transform: rotate(-8deg);
   animation: miniFloat1 4s ease-in-out infinite;
 }
 .hero-mini-after {
   bottom: 12%;
-  right: -20px;
+  right: -30px;
   transform: rotate(7deg);
   background: var(--cream);
   animation: miniFloat2 5s ease-in-out infinite;
@@ -375,8 +415,8 @@ header {
 .hero-speech {
   position: absolute;
   top: -10px;
-  right: 5%;
-  background: var(--yellow);
+  right: 8%;
+  background: var(--honey);
   border: 3px solid var(--ink);
   border-radius: 24px;
   padding: 14px 22px;
@@ -410,7 +450,7 @@ header {
   width: 0; height: 0;
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
-  border-top: 12px solid var(--yellow);
+  border-top: 12px solid var(--honey);
   z-index: 1;
 }
 @keyframes speechFloat {
@@ -424,53 +464,11 @@ header {
   .hero-mini-after { bottom: 8%; right: -10px; }
   .hero-speech { top: -8px; right: 8px; padding: 10px 14px; border-radius: 16px; }
   .speech-text { font-size: 11px; }
+  .hero-animal { width: 60px; height: 60px; }
+  .hero-animal-bear { top: -20px; left: -8px; }
+  .hero-animal-bunny { bottom: -15px; right: 5px; }
+  .hero-animal-bird { display: none; }
   .hero-photo-wrap { padding: 0 4px; }
-}
-.hero-card {
-  background: white;
-  border: 3px solid var(--ink);
-  border-radius: 20px;
-  padding: 18px 14px 14px;
-  box-shadow: 6px 6px 0 var(--ink);
-  transform: rotate(var(--rot, -3deg));
-  position: relative;
-}
-.hero-card .label {
-  font-family: var(--en);
-  font-weight: 600;
-  font-size: 12px;
-  color: var(--pink-deep);
-  text-align: center;
-  margin-bottom: 6px;
-  letter-spacing: 0.1em;
-}
-.hero-card .ja {
-  font-size: 12px;
-  color: var(--ink-soft);
-  text-align: center;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-.hero-card svg { width: 100%; height: auto; display: block; }
-.hero-card.after { transform: rotate(3deg); background: var(--cream); }
-
-.hero-arrow {
-  font-family: var(--en);
-  font-weight: 600;
-  color: var(--pink-deep);
-}
-.hero-arrow svg {
-  width: 60px; height: 40px;
-  animation: arrowBounce 1.5s ease-in-out infinite;
-}
-@keyframes arrowBounce {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(8px); }
-}
-
-@media (max-width: 640px) {
-  .hero-visual { grid-template-columns: 1fr; gap: 8px; }
-  .hero-arrow svg { transform: rotate(90deg); width: 40px; height: 30px; }
 }
 
 .hero-cta-group {
@@ -493,7 +491,7 @@ header {
   letter-spacing: 0.02em;
 }
 .btn-primary {
-  background: var(--pink-deep);
+  background: var(--leaf-deep);
   color: white;
   box-shadow: 5px 5px 0 var(--ink);
 }
@@ -524,7 +522,7 @@ header {
   font-weight: 500;
 }
 .hero-meta-item .icon {
-  background: var(--mint);
+  background: var(--moss);
   width: 20px; height: 20px;
   display: grid; place-items: center;
   border-radius: 50%;
@@ -541,14 +539,14 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-family: var(--en);
   font-weight: 600;
   font-size: 13px;
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   letter-spacing: 0.2em;
   text-align: center;
   margin-bottom: 12px;
   display: flex; align-items: center; justify-content: center; gap: 10px;
 }
 .section-label::before, .section-label::after {
-  content: ""; width: 30px; height: 2px; background: var(--pink-deep); border-radius: 999px;
+  content: ""; width: 30px; height: 2px; background: var(--leaf-deep); border-radius: 999px;
 }
 .section-title {
   font-family: var(--rounded);
@@ -560,15 +558,44 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   letter-spacing: 0.02em;
 }
 .section-title .accent {
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
 }
-.section-title .accent-sky {
-  color: var(--sky-deep);
+.section-title .accent-honey {
+  color: var(--honey-deep);
 }
+.section-title .accent-apple {
+  color: var(--apple);
+}
+
+/* セクション装飾 - 動物アクセント */
+.section-animal {
+  position: absolute;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+.section-animal svg { width: 100%; height: 100%; }
 
 /* ── 体験ステップ ── */
 .steps {
-  background: linear-gradient(180deg, transparent 0%, var(--cream) 100%);
+  background: linear-gradient(180deg, transparent 0%, var(--moss) 100%);
+  position: relative;
+}
+.steps::before {
+  content: "🍃";
+  position: absolute;
+  top: 20px; left: 5%;
+  font-size: 40px;
+  opacity: 0.3;
+  animation: leafSway 4s ease-in-out infinite;
+}
+.steps::after {
+  content: "🌿";
+  position: absolute;
+  bottom: 20px; right: 5%;
+  font-size: 50px;
+  opacity: 0.3;
+  animation: leafSway 5s ease-in-out infinite reverse;
 }
 .steps-grid {
   display: grid;
@@ -582,18 +609,18 @@ section { padding: 80px 0; position: relative; z-index: 2; }
 .step-card {
   background: white;
   border: 3px solid var(--ink);
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 24px 18px 22px;
   text-align: center;
   position: relative;
   box-shadow: 4px 4px 0 var(--ink);
   transition: transform 0.3s;
 }
-.step-card:hover { transform: translateY(-4px); }
+.step-card:hover { transform: translateY(-4px) rotate(-1deg); }
 .step-card:nth-child(1) { background: var(--cream); }
-.step-card:nth-child(2) { background: var(--mint); }
-.step-card:nth-child(3) { background: var(--lavender); }
-.step-card:nth-child(4) { background: var(--pink); }
+.step-card:nth-child(2) { background: var(--moss); }
+.step-card:nth-child(3) { background: var(--cream-deep); }
+.step-card:nth-child(4) { background: var(--leaf); }
 
 .step-num {
   display: inline-grid;
@@ -629,26 +656,26 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-weight: 500;
 }
 
-/* ── 先行予約セクション（メインCTA） ── */
+/* ── 先行予約セクション ── */
 .preorder {
-  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+  background: linear-gradient(135deg, var(--leaf) 0%, var(--leaf-deep) 100%);
   position: relative;
   overflow: hidden;
 }
 .preorder::before {
-  content: "🌟";
+  content: "🌻";
   position: absolute;
   top: 40px; right: 60px;
   font-size: 60px;
-  opacity: 0.2;
+  opacity: 0.3;
   animation: floaty 4s ease-in-out infinite;
 }
 .preorder::after {
-  content: "🎨";
+  content: "🍯";
   position: absolute;
   bottom: 40px; left: 60px;
   font-size: 60px;
-  opacity: 0.2;
+  opacity: 0.3;
   animation: floaty 5s ease-in-out infinite reverse;
 }
 @keyframes floaty {
@@ -673,7 +700,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
 
 .preorder-tag {
   display: inline-block;
-  background: var(--yellow);
+  background: var(--honey);
   color: var(--ink);
   font-weight: 800;
   font-size: 12px;
@@ -698,19 +725,9 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-weight: 500;
 }
 
-.preorder-price {
-  display: flex; align-items: baseline; justify-content: center;
-  gap: 16px;
-  margin: 28px 0 22px;
-  padding: 22px 0;
-  background: var(--cream);
-  border-radius: 20px;
-  border: 2px dashed var(--ink);
-}
-
-/* ── 進捗バー ── */
+/* 進捗バー */
 .progress-section {
-  background: linear-gradient(135deg, #fff9ef 0%, #ffe9b3 100%);
+  background: linear-gradient(135deg, var(--cream) 0%, var(--cream-deep) 100%);
   border: 2.5px solid var(--ink);
   border-radius: 18px;
   padding: 22px 24px 20px;
@@ -734,7 +751,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-family: var(--en);
   font-size: 32px;
   font-weight: 700;
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   line-height: 1;
 }
 .progress-total {
@@ -744,7 +761,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-weight: 600;
 }
 .progress-remain {
-  background: var(--pink-deep);
+  background: var(--apple);
   color: white;
   padding: 6px 16px;
   border-radius: 999px;
@@ -770,7 +787,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--pink) 0%, var(--pink-deep) 50%, #ff6b97 100%);
+  background: linear-gradient(90deg, var(--leaf) 0%, var(--leaf-deep) 50%, #4a8a3a 100%);
   border-radius: 999px;
   position: relative;
   transition: width 1.8s cubic-bezier(.25,.8,.25,1);
@@ -822,19 +839,28 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   100% { transform: scale(2); opacity: 0; }
 }
 .today-count strong {
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   font-size: 14px;
   font-family: var(--en);
   font-weight: 700;
   margin: 0 2px;
 }
-
 @media (max-width: 480px) {
   .progress-section { padding: 18px 18px 16px; }
   .progress-status { font-size: 14px; }
   .progress-number { font-size: 26px; }
   .progress-remain { font-size: 11px; padding: 5px 12px; }
   .progress-remain strong { font-size: 14px; }
+}
+
+.preorder-price {
+  display: flex; align-items: baseline; justify-content: center;
+  gap: 16px;
+  margin: 28px 0 22px;
+  padding: 22px 0;
+  background: var(--cream);
+  border-radius: 20px;
+  border: 2px dashed var(--ink);
 }
 .price-old {
   font-family: var(--en);
@@ -847,7 +873,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-family: var(--en);
   font-size: clamp(40px, 6vw, 56px);
   font-weight: 700;
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   line-height: 1;
   display: flex; align-items: baseline; gap: 2px;
 }
@@ -878,7 +904,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   display: inline-grid;
   place-items: center;
   width: 24px; height: 24px;
-  background: var(--mint);
+  background: var(--moss);
   border: 2px solid var(--ink);
   border-radius: 50%;
   font-weight: 800;
@@ -906,17 +932,6 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   transition: all 0.2s;
 }
 .btn-line:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--ink); }
-.btn-line::before {
-  content: "";
-  width: 26px; height: 26px;
-  background: white;
-  border-radius: 50%;
-  display: inline-grid;
-  place-items: center;
-  color: #06C755;
-  font-size: 16px;
-  font-weight: 800;
-}
 .btn-line::before { content: "✉"; line-height: 1; padding-top: 2px; }
 
 .preorder-note {
@@ -951,15 +966,15 @@ section { padding: 80px 0; position: relative; z-index: 2; }
 }
 .fun-card:hover { transform: translateY(-4px); }
 .fun-card:nth-child(1) { background: linear-gradient(135deg, white 0%, var(--cream) 100%); }
-.fun-card:nth-child(2) { background: linear-gradient(135deg, white 0%, var(--mint) 100%); }
+.fun-card:nth-child(2) { background: linear-gradient(135deg, white 0%, var(--moss) 100%); }
 .fun-card:nth-child(3) { background: linear-gradient(135deg, white 0%, var(--sky) 100%); }
-.fun-card:nth-child(4) { background: linear-gradient(135deg, white 0%, var(--lavender) 100%); }
+.fun-card:nth-child(4) { background: linear-gradient(135deg, white 0%, var(--cream-deep) 100%); }
 
-.fun-emoji {
-  font-size: 44px;
+.fun-icon {
   flex-shrink: 0;
-  line-height: 1;
+  width: 60px; height: 60px;
 }
+.fun-icon svg { width: 100%; height: 100%; }
 .fun-card h4 {
   font-weight: 900;
   font-size: 18px;
@@ -973,10 +988,20 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-weight: 500;
 }
 
-/* ── 子供の声（吹き出し） ── */
+/* ── 事前アンケート ── */
 .kids-voice {
   background: linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
   padding: 90px 0;
+  position: relative;
+}
+.survey-lede {
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: -28px auto 40px;
+  max-width: 620px;
+  line-height: 1.95;
+  font-weight: 500;
 }
 .bubble-grid {
   display: grid;
@@ -995,9 +1020,9 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   position: relative;
   box-shadow: 4px 4px 0 var(--ink);
 }
-.bubble-card.b1 { background: #fff4f7; }
-.bubble-card.b2 { background: #f0f8fc; transform: translateY(20px); }
-.bubble-card.b3 { background: #fffbe8; }
+.bubble-card.b1 { background: #f7f4e6; }
+.bubble-card.b2 { background: #f0f8e6; transform: translateY(20px); }
+.bubble-card.b3 { background: #fff5e1; }
 
 .bubble-arrow {
   position: absolute;
@@ -1018,22 +1043,34 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   border-right: 11px solid transparent;
   border-top: 13px solid white;
 }
-.bubble-card.b1 .bubble-arrow::after { border-top-color: #fff4f7; }
-.bubble-card.b2 .bubble-arrow::after { border-top-color: #f0f8fc; }
-.bubble-card.b3 .bubble-arrow::after { border-top-color: #fffbe8; }
+.bubble-card.b1 .bubble-arrow::after { border-top-color: #f7f4e6; }
+.bubble-card.b2 .bubble-arrow::after { border-top-color: #f0f8e6; }
+.bubble-card.b3 .bubble-arrow::after { border-top-color: #fff5e1; }
 
-/* ── アンケート結果リード ── */
-.survey-lede {
-  text-align: center;
-  font-size: 14px;
+.bubble-quote {
+  font-weight: 700;
+  font-size: 15.5px;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1.85;
+}
+.bubble-by {
+  font-size: 12px;
   color: var(--ink-soft);
-  margin: -28px auto 40px;
-  max-width: 620px;
-  line-height: 1.95;
-  font-weight: 500;
+  font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+  padding-top: 24px;
+  border-top: 1.5px dashed var(--line);
+}
+.bubble-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: grid; place-items: center;
+  font-size: 22px;
+  flex-shrink: 0;
 }
 
-/* ── アンケート統計 ── */
 .survey-result {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1063,7 +1100,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-family: var(--en);
   font-weight: 700;
   font-size: 38px;
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   line-height: 1;
   margin-bottom: 8px;
 }
@@ -1080,31 +1117,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-weight: 600;
 }
 
-.bubble-quote {
-  font-weight: 700;
-  font-size: 15.5px;
-  color: var(--ink);
-  margin-bottom: 16px;
-  line-height: 1.85;
-}
-.bubble-by {
-  font-size: 12px;
-  color: var(--ink-soft);
-  font-weight: 600;
-  display: flex; align-items: center; gap: 10px;
-  padding-top: 24px;
-  border-top: 1.5px dashed var(--line);
-}
-.bubble-avatar {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  border: 2px solid var(--ink);
-  display: grid; place-items: center;
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-/* ── ワッペンギャラリー（横スライド） ── */
+/* ── ワッペンギャラリー ── */
 .gallery {
   background: var(--bg);
   overflow: hidden;
@@ -1142,7 +1155,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   border-radius: 999px;
 }
 .gallery-scroller::-webkit-scrollbar-thumb {
-  background: var(--pink-deep);
+  background: var(--leaf-deep);
   border-radius: 999px;
 }
 .gallery-card {
@@ -1155,7 +1168,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   box-shadow: 5px 5px 0 var(--ink);
   transition: transform 0.3s;
 }
-.gallery-card:hover { transform: translateY(-4px); }
+.gallery-card:hover { transform: translateY(-4px) rotate(1deg); }
 .gallery-photo {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -1164,8 +1177,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   border-bottom: 3px solid var(--ink);
 }
 .gallery-photo svg {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   display: block;
 }
 .gallery-meta {
@@ -1174,7 +1186,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
 }
 .gallery-tag {
   display: inline-block;
-  background: var(--pink);
+  background: var(--moss);
   color: var(--ink);
   font-size: 11px;
   font-weight: 700;
@@ -1208,7 +1220,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   padding-bottom: 4px;
 }
 .gallery-arrow:hover {
-  background: var(--yellow);
+  background: var(--honey);
   transform: translateY(-50%) translate(-2px, -2px);
   box-shadow: 5px 5px 0 var(--ink);
 }
@@ -1263,7 +1275,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   display: inline-grid;
   place-items: center;
   width: 32px; height: 32px;
-  background: var(--pink-deep);
+  background: var(--leaf-deep);
   color: white;
   border-radius: 50%;
   font-family: var(--en);
@@ -1274,7 +1286,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
 .faq-q .q-icon {
   margin-left: auto;
   font-weight: 800;
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   font-size: 22px;
   transition: transform 0.3s;
 }
@@ -1288,31 +1300,260 @@ section { padding: 80px 0; position: relative; z-index: 2; }
 .faq-item.open .faq-a {
   max-height: 400px;
   padding: 18px 22px 22px 68px;
-}
-.faq-a {
   font-size: 13.5px;
   color: var(--ink-soft);
   line-height: 1.95;
   font-weight: 500;
 }
 
+/* ── ししゅうの森｜クリエイター募集 ── */
+.forest-creator {
+  background: linear-gradient(180deg, #f4f7e8 0%, var(--moss) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.forest-creator::before {
+  content: "🌳";
+  position: absolute;
+  top: 30px; left: 5%;
+  font-size: 80px;
+  opacity: 0.2;
+  animation: floaty 5s ease-in-out infinite;
+}
+.forest-creator::after {
+  content: "🌲";
+  position: absolute;
+  bottom: 40px; right: 5%;
+  font-size: 90px;
+  opacity: 0.2;
+  animation: floaty 6s ease-in-out infinite reverse;
+}
+
+.forest-header { text-align: center; margin-bottom: 50px; }
+.forest-emoji {
+  font-size: 50px;
+  margin-bottom: 16px;
+  display: inline-block;
+  animation: floaty 3s ease-in-out infinite;
+}
+.forest-title {
+  font-weight: 900;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.forest-brand {
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--leaf-deep);
+  position: relative;
+  display: inline-block;
+}
+.forest-brand::after {
+  content: "";
+  position: absolute;
+  left: -4px; right: -4px;
+  bottom: 4px;
+  height: 11px;
+  background: var(--honey);
+  opacity: 0.5;
+  z-index: -1;
+  border-radius: 4px;
+}
+.forest-sub {
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: var(--ink);
+  font-weight: 700;
+}
+.forest-lede {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 2;
+  font-weight: 500;
+}
+
+.forest-merits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto 50px;
+}
+@media (max-width: 720px) { .forest-merits { grid-template-columns: 1fr; gap: 14px; } }
+.forest-merit {
+  background: white;
+  border: 3px solid var(--ink);
+  border-radius: 20px;
+  padding: 28px 22px;
+  text-align: center;
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform 0.3s;
+}
+.forest-merit:hover { transform: translateY(-4px); }
+.merit-icon {
+  width: 60px; height: 60px;
+  margin: 0 auto 14px;
+}
+.merit-icon svg { width: 100%; height: 100%; }
+.forest-merit h4 {
+  font-weight: 800;
+  font-size: 17px;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.forest-merit p {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.85;
+  font-weight: 500;
+}
+
+.forest-pricing {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  background: white;
+  border: 4px solid var(--ink);
+  border-radius: 28px;
+  padding: 40px 36px;
+  box-shadow: 7px 7px 0 var(--ink);
+  text-align: center;
+  position: relative;
+}
+@media (max-width: 540px) {
+  .forest-pricing { padding: 30px 22px; border-radius: 20px; }
+}
+.forest-tag {
+  display: inline-block;
+  background: var(--honey);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 12px;
+  padding: 7px 18px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  margin-bottom: 22px;
+  letter-spacing: 0.04em;
+}
+.forest-pricing-title {
+  font-weight: 900;
+  font-size: 22px;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
+.forest-price-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--moss) 100%);
+  padding: 26px 16px;
+  border-radius: 18px;
+  border: 2px dashed var(--ink);
+  margin-bottom: 24px;
+}
+.forest-price-grid.forest-price-single {
+  grid-template-columns: 1fr;
+  padding: 32px 16px;
+}
+@media (max-width: 540px) {
+  .forest-price-grid { grid-template-columns: 1fr; gap: 8px; padding: 22px 16px; }
+}
+.forest-price-block { text-align: center; }
+.forest-price-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+.forest-price-num {
+  font-family: var(--en);
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 44px);
+  color: var(--leaf-deep);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.forest-price-num span {
+  font-family: var(--rounded);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-left: 4px;
+}
+.forest-price-note {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.forest-price-divider {
+  font-family: var(--en);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--leaf-deep);
+}
+.forest-features {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 22px;
+  text-align: left;
+  margin: 0;
+}
+@media (max-width: 480px) { .forest-features { grid-template-columns: 1fr; } }
+.forest-features li {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  display: flex; align-items: center; gap: 10px;
+}
+.forest-features .check {
+  display: inline-grid;
+  place-items: center;
+  width: 22px; height: 22px;
+  background: var(--moss);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.forest-cta {
+  text-align: center;
+  margin-top: 30px;
+}
+.forest-cta-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.forest-cta-note {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 16px;
+  line-height: 1.8;
+  font-weight: 500;
+}
+
 /* ── 最終CTA ── */
 .final-cta {
-  background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%);
+  background: linear-gradient(135deg, var(--leaf) 0%, var(--honey) 100%);
   text-align: center;
   padding: 90px 0;
   position: relative;
   overflow: hidden;
 }
 .final-cta::before {
-  content: "✨"; position: absolute;
+  content: "🌻"; position: absolute;
   top: 30px; left: 20%;
   font-size: 40px;
   opacity: 0.4;
   animation: floaty 3s ease-in-out infinite;
 }
 .final-cta::after {
-  content: "✏️"; position: absolute;
+  content: "🍯"; position: absolute;
   bottom: 30px; right: 20%;
   font-size: 50px;
   opacity: 0.4;
@@ -1326,7 +1567,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   color: var(--ink);
 }
 .final-cta h2 .accent {
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   position: relative;
 }
 .final-cta h2 .accent::after {
@@ -1335,7 +1576,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   left: -3px; right: -3px;
   bottom: 3px;
   height: 10px;
-  background: var(--yellow);
+  background: var(--apple);
   opacity: 0.5;
   z-index: -1;
   border-radius: 4px;
@@ -1347,7 +1588,6 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   font-weight: 500;
 }
 
-/* ── 最終CTAのミニ進捗バー ── */
 .final-mini-bar {
   max-width: 420px;
   margin: 0 auto 28px;
@@ -1367,7 +1607,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
 }
 .final-mini-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--pink) 0%, var(--pink-deep) 100%);
+  background: linear-gradient(90deg, var(--leaf) 0%, var(--leaf-deep) 100%);
   border-radius: 999px;
   position: relative;
 }
@@ -1395,7 +1635,7 @@ section { padding: 80px 0; position: relative; z-index: 2; }
   gap: 6px;
 }
 .final-mini-bar-label strong {
-  color: var(--pink-deep);
+  color: var(--leaf-deep);
   font-family: var(--en);
   font-size: 16px;
   margin: 0 2px;
@@ -1404,20 +1644,21 @@ section { padding: 80px 0; position: relative; z-index: 2; }
 
 /* ── フッター ── */
 footer {
-  background: var(--ink);
+  background: var(--bark);
   color: white;
   padding: 50px 0 24px;
   position: relative;
   z-index: 2;
 }
-.footer-inner {
-  text-align: center;
-}
+.footer-inner { text-align: center; }
 .footer-logo {
   font-weight: 800;
   font-size: 18px;
   margin-bottom: 8px;
   color: var(--cream-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 .footer-logo small {
   font-family: var(--en);
@@ -1457,7 +1698,7 @@ footer {
   color: rgba(255,255,255,0.6);
   text-decoration: none;
 }
-.footer-links a:hover { color: var(--pink); }
+.footer-links a:hover { color: var(--honey); }
 .footer-copy {
   font-size: 10px;
   color: rgba(255,255,255,0.4);
@@ -1476,7 +1717,6 @@ footer {
   transform: translateY(0);
 }
 
-/* ── アクセシビリティ ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -1488,15 +1728,19 @@ footer {
 </head>
 <body>
 
-<div class="bg-clouds"></div>
+<!-- 森背景 -->
+<div class="bg-forest"></div>
+<div class="flying-leaf">🍃</div>
+<div class="flying-leaf">🌿</div>
+<div class="flying-leaf">🍂</div>
 
 <!-- ── HEADER ── -->
 <header>
-  <a href="#" style="text-decoration: none;" class="logo">
-    <span class="logo-mark">🎨</span>
+  <a href="#" class="logo">
+    <span class="logo-mark">🌳</span>
     <span>
-      ししゅうのいとのさん
-      <small>Scribble Embroidery, Okinawa</small>
+      ししゅうの森
+      <small>Shishu no Mori, Okinawa</small>
     </span>
   </a>
   <a href="#preorder" class="header-cta">先行予約 →</a>
@@ -1508,56 +1752,98 @@ footer {
     <div class="hero-content">
       <div class="launch-banner">
         <span class="launch-date">2026.7.1</span>
-        <span class="launch-text">SERVICE LAUNCH</span>
-        <span class="launch-desc">7月1日、サービススタート！</span>
+        <span class="launch-text">FOREST OPENS</span>
+        <span class="launch-desc">7月1日、森がひらきます</span>
       </div>
-      <div class="kids-badge">⭐ 小学生以下のお子様限定オファー ⭐</div>
       <h1>
         その「<span class="accent">らくがき</span>」を、<br>
         <span class="underline-wavy">一生の宝物</span>に。
       </h1>
       <p class="hero-lede">
         冷蔵庫に貼ってある、あの絵。お絵かき帳の隅っこに描かれた「ねこ」。<br>
-        写真をLINEで送るだけで、お子さんが描いた絵が、刺繍ワッペンになって届きます。
+        写真を公式LINEで送るだけで、お子さんが描いた絵が、刺繍ワッペンになって森から届きます。
       </p>
 
-      <!-- ヒーロー大きな1枚写真 -->
+      <!-- ヒーロー大判ビジュアル＋動物たち -->
       <div class="hero-photo-wrap">
         <div class="hero-photo">
           <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=70" alt="絵を見せて誇らしげな子供" loading="eager">
         </div>
 
-        <!-- 浮かぶBefore/Afterミニカード -->
+        <!-- 動物：クマ -->
+        <div class="hero-animal hero-animal-bear" style="--rot: -10deg;">
+          <svg viewBox="0 0 100 100">
+            <circle cx="32" cy="32" r="10" fill="#8b6f47" stroke="#5a4838" stroke-width="2"/>
+            <circle cx="68" cy="32" r="10" fill="#8b6f47" stroke="#5a4838" stroke-width="2"/>
+            <circle cx="50" cy="55" r="32" fill="#c9a87b" stroke="#5a4838" stroke-width="3"/>
+            <circle cx="40" cy="50" r="3" fill="#5a4838"/>
+            <circle cx="60" cy="50" r="3" fill="#5a4838"/>
+            <ellipse cx="50" cy="62" rx="6" ry="4" fill="#5a4838"/>
+            <path d="M 44,68 Q 50,72 56,68" fill="none" stroke="#5a4838" stroke-width="2.5" stroke-linecap="round"/>
+            <ellipse cx="50" cy="58" rx="9" ry="6" fill="#fef5dc" opacity="0.5"/>
+          </svg>
+        </div>
+
+        <!-- 動物：うさぎ -->
+        <div class="hero-animal hero-animal-bunny" style="--rot: 8deg;">
+          <svg viewBox="0 0 100 100">
+            <ellipse cx="38" cy="22" rx="6" ry="14" fill="white" stroke="#5a4838" stroke-width="2.5"/>
+            <ellipse cx="62" cy="22" rx="6" ry="14" fill="white" stroke="#5a4838" stroke-width="2.5"/>
+            <ellipse cx="38" cy="22" rx="3" ry="9" fill="#ffc4d6"/>
+            <ellipse cx="62" cy="22" rx="3" ry="9" fill="#ffc4d6"/>
+            <circle cx="50" cy="55" r="30" fill="white" stroke="#5a4838" stroke-width="3"/>
+            <circle cx="40" cy="50" r="3" fill="#5a4838"/>
+            <circle cx="60" cy="50" r="3" fill="#5a4838"/>
+            <circle cx="44" cy="58" r="3" fill="#ffc4d6" opacity="0.7"/>
+            <circle cx="56" cy="58" r="3" fill="#ffc4d6" opacity="0.7"/>
+            <path d="M 50,62 L 50,65" stroke="#5a4838" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 45,68 Q 50,72 55,68" fill="none" stroke="#5a4838" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- 動物：ことり -->
+        <div class="hero-animal hero-animal-bird">
+          <svg viewBox="0 0 100 100">
+            <ellipse cx="50" cy="55" rx="28" ry="24" fill="#a8d68a" stroke="#5a4838" stroke-width="3"/>
+            <circle cx="38" cy="48" r="3" fill="#5a4838"/>
+            <path d="M 28,55 L 18,58 L 28,62 Z" fill="#f5b94a" stroke="#5a4838" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 65,40 Q 75,30 78,42 Q 75,48 65,50" fill="#a8d68a" stroke="#5a4838" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 60,70 Q 68,72 70,68" fill="none" stroke="#5a4838" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- ミニカードBefore -->
         <div class="hero-mini hero-mini-before">
           <div class="mini-label">BEFORE</div>
           <svg viewBox="0 0 100 100">
-            <g fill="none" stroke="#ff8fab" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <g fill="none" stroke="#f08a7a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M 30,55 Q 25,30 50,28 Q 75,30 70,55 Q 75,80 50,82 Q 25,80 30,55"/>
               <path d="M 36,40 L 30,22 L 44,34"/>
               <path d="M 64,40 L 70,22 L 56,34"/>
             </g>
-            <circle cx="42" cy="52" r="3" fill="#4a3a30"/>
-            <circle cx="58" cy="52" r="3" fill="#4a3a30"/>
-            <path d="M 45,65 Q 50,72 55,65" fill="none" stroke="#4a3a30" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="42" cy="52" r="3" fill="#5a4838"/>
+            <circle cx="58" cy="52" r="3" fill="#5a4838"/>
+            <path d="M 45,65 Q 50,72 55,65" fill="none" stroke="#5a4838" stroke-width="2.5" stroke-linecap="round"/>
           </svg>
         </div>
 
+        <!-- ミニカードAfter -->
         <div class="hero-mini hero-mini-after">
           <div class="mini-label">AFTER</div>
           <svg viewBox="0 0 100 100">
-            <ellipse cx="50" cy="50" rx="42" ry="36" fill="#fff5e1" stroke="#e5d9c3" stroke-width="2" stroke-dasharray="3 2"/>
-            <g fill="none" stroke="#ff8fab" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="50" cy="50" rx="42" ry="36" fill="#fef5dc" stroke="#d4c4a3" stroke-width="2" stroke-dasharray="3 2"/>
+            <g fill="none" stroke="#f08a7a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M 32,55 Q 28,32 50,30 Q 72,32 68,55 Q 72,78 50,80 Q 28,78 32,55"/>
               <path d="M 37,42 L 32,24 L 44,36"/>
               <path d="M 63,42 L 68,24 L 56,36"/>
             </g>
-            <circle cx="42" cy="52" r="3.5" fill="#4a3a30"/>
-            <circle cx="58" cy="52" r="3.5" fill="#4a3a30"/>
-            <path d="M 45,65 Q 50,72 55,65" fill="none" stroke="#4a3a30" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="42" cy="52" r="3.5" fill="#5a4838"/>
+            <circle cx="58" cy="52" r="3.5" fill="#5a4838"/>
+            <path d="M 45,65 Q 50,72 55,65" fill="none" stroke="#5a4838" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
 
-        <!-- 浮かぶ吹き出し（子供の声） -->
+        <!-- 吹き出し -->
         <div class="hero-speech">
           <span class="speech-text">ねぇママ、見て見て！<br>ぼくの絵がワッペンになった！</span>
         </div>
@@ -1588,11 +1874,11 @@ footer {
         <div class="step-num">1</div>
         <div class="step-icon">
           <svg viewBox="0 0 100 100">
-            <rect x="20" y="25" width="60" height="50" rx="6" fill="white" stroke="#4a3a30" stroke-width="3"/>
-            <path d="M 30,40 Q 40,30 50,40 Q 60,50 70,40" fill="none" stroke="#ff8fab" stroke-width="3" stroke-linecap="round"/>
-            <circle cx="42" cy="55" r="3" fill="#4a3a30"/>
-            <circle cx="58" cy="55" r="3" fill="#4a3a30"/>
-            <path d="M 42,65 Q 50,70 58,65" fill="none" stroke="#4a3a30" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="20" y="25" width="60" height="50" rx="6" fill="white" stroke="#5a4838" stroke-width="3"/>
+            <path d="M 30,40 Q 40,30 50,40 Q 60,50 70,40" fill="none" stroke="#f08a7a" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="42" cy="55" r="3" fill="#5a4838"/>
+            <circle cx="58" cy="55" r="3" fill="#5a4838"/>
+            <path d="M 42,65 Q 50,70 58,65" fill="none" stroke="#5a4838" stroke-width="2.5" stroke-linecap="round"/>
           </svg>
         </div>
         <h4>えをかく</h4>
@@ -1603,12 +1889,11 @@ footer {
         <div class="step-num">2</div>
         <div class="step-icon">
           <svg viewBox="0 0 100 100">
-            <rect x="25" y="20" width="50" height="65" rx="8" fill="white" stroke="#4a3a30" stroke-width="3"/>
-            <circle cx="50" cy="35" r="3" fill="#4a3a30"/>
-            <path d="M 50,72 L 50,72" stroke="#4a3a30" stroke-width="2"/>
+            <rect x="25" y="20" width="50" height="65" rx="8" fill="white" stroke="#5a4838" stroke-width="3"/>
+            <circle cx="50" cy="35" r="3" fill="#5a4838"/>
             <rect x="32" y="42" width="36" height="25" rx="3" fill="#06C755"/>
             <text x="50" y="58" text-anchor="middle" fill="white" font-family="Fredoka" font-size="11" font-weight="700">LINE</text>
-            <path d="M 50,82 Q 52,80 50,78" stroke="#4a3a30" stroke-width="2" fill="none"/>
+            <path d="M 50,82 Q 52,80 50,78" stroke="#5a4838" stroke-width="2" fill="none"/>
           </svg>
         </div>
         <h4>LINEでおくる</h4>
@@ -1619,16 +1904,16 @@ footer {
         <div class="step-num">3</div>
         <div class="step-icon">
           <svg viewBox="0 0 100 100">
-            <ellipse cx="50" cy="50" rx="32" ry="28" fill="white" stroke="#4a3a30" stroke-width="3"/>
-            <g fill="none" stroke="#ff8fab" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="50" cy="50" rx="32" ry="28" fill="white" stroke="#5a4838" stroke-width="3"/>
+            <g fill="none" stroke="#f08a7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
               <path d="M 38,55 Q 35,38 50,36 Q 65,38 62,55 Q 65,72 50,74 Q 35,72 38,55"/>
               <path d="M 42,44 L 38,30 L 47,40"/>
               <path d="M 58,44 L 62,30 L 53,40"/>
             </g>
-            <circle cx="45" cy="52" r="2" fill="#4a3a30"/>
-            <circle cx="55" cy="52" r="2" fill="#4a3a30"/>
-            <path d="M 22,30 L 28,36" stroke="#7ac3dc" stroke-width="3" stroke-linecap="round"/>
-            <path d="M 78,28 L 72,34" stroke="#7ac3dc" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="45" cy="52" r="2" fill="#5a4838"/>
+            <circle cx="55" cy="52" r="2" fill="#5a4838"/>
+            <path d="M 22,30 L 28,36" stroke="#a8d68a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 78,28 L 72,34" stroke="#a8d68a" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
         <h4>ししゅうにする</h4>
@@ -1639,9 +1924,9 @@ footer {
         <div class="step-num">4</div>
         <div class="step-icon">
           <svg viewBox="0 0 100 100">
-            <rect x="18" y="35" width="64" height="42" rx="4" fill="#ffd966" stroke="#4a3a30" stroke-width="3"/>
-            <path d="M 18,35 L 50,55 L 82,35" fill="none" stroke="#4a3a30" stroke-width="3" stroke-linejoin="round"/>
-            <circle cx="62" cy="22" r="12" fill="#ff8fab" stroke="#4a3a30" stroke-width="2.5"/>
+            <rect x="18" y="35" width="64" height="42" rx="4" fill="#ffd966" stroke="#5a4838" stroke-width="3"/>
+            <path d="M 18,35 L 50,55 L 82,35" fill="none" stroke="#5a4838" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="62" cy="22" r="12" fill="#a8d68a" stroke="#5a4838" stroke-width="2.5"/>
             <text x="62" y="27" text-anchor="middle" fill="white" font-size="13" font-weight="700">★</text>
           </svg>
         </div>
@@ -1652,13 +1937,13 @@ footer {
   </div>
 </section>
 
-<!-- ── 先行予約（メインCTA） ── -->
+<!-- ── 先行予約 ── -->
 <section class="preorder" id="preorder">
   <div class="container">
     <div class="preorder-card fade-up">
       <div style="text-align: center;">
         <div class="preorder-tag">🎁 LIMITED OFFER — 先着1,000名様限定</div>
-        <h2 class="preorder-title">いま予約すると<br><span style="color: var(--pink-deep);">半額</span>でお届け！</h2>
+        <h2 class="preorder-title">いま予約すると<br><span style="color: var(--leaf-deep);">半額</span>でお届け！</h2>
         <p class="preorder-lede">
           通常3,000円のところ、先行予約だけの特別価格で。<br>
           送料込み・ぜんぶ含めたお値段です。
@@ -1702,36 +1987,69 @@ footer {
   </div>
 </section>
 
-<!-- ── ワクワクポイント4つ ── -->
+<!-- ── 4つのいいこと（動物アイコン版） ── -->
 <section class="fun-points">
   <div class="container">
     <div class="section-label">WHY PARENTS LOVE IT</div>
-    <h2 class="section-title">こんな<span class="accent-sky">いいこと</span>があります</h2>
+    <h2 class="section-title">こんな<span class="accent-honey">いいこと</span>があります</h2>
 
     <div class="fun-grid">
       <div class="fun-card fade-up">
-        <div class="fun-emoji">🌟</div>
+        <div class="fun-icon">
+          <svg viewBox="0 0 60 60">
+            <circle cx="30" cy="30" r="24" fill="#ffd966" stroke="#5a4838" stroke-width="3"/>
+            <circle cx="22" cy="26" r="3" fill="#5a4838"/>
+            <circle cx="38" cy="26" r="3" fill="#5a4838"/>
+            <path d="M 22,38 Q 30,44 38,38" fill="none" stroke="#5a4838" stroke-width="2.5" stroke-linecap="round"/>
+            <g stroke="#f5b94a" stroke-width="2.5" stroke-linecap="round" fill="none">
+              <line x1="30" y1="6" x2="30" y2="12"/>
+              <line x1="6" y1="30" x2="12" y2="30"/>
+              <line x1="48" y1="30" x2="54" y2="30"/>
+              <line x1="13" y1="13" x2="17" y2="17"/>
+              <line x1="43" y1="13" x2="47" y2="17"/>
+            </g>
+          </svg>
+        </div>
         <div>
           <h4>自信のきっかけに</h4>
           <p>自分の絵が「作品」になる体験は、お子さんにとって大きな自信になります。「ぼくの絵がワッペンになった！」</p>
         </div>
       </div>
       <div class="fun-card fade-up">
-        <div class="fun-emoji">💝</div>
+        <div class="fun-icon">
+          <svg viewBox="0 0 60 60">
+            <path d="M 30,50 Q 30,42 22,35 Q 12,28 12,20 Q 12,12 19,12 Q 26,12 30,20 Q 34,12 41,12 Q 48,12 48,20 Q 48,28 38,35 Q 30,42 30,50 Z" fill="#f08a7a" stroke="#5a4838" stroke-width="3" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <div>
           <h4>世界に一つの宝物</h4>
           <p>お子さんが描いた一枚の絵を、ずっと残せる形に。何年経っても色あせない、家族の思い出になります。</p>
         </div>
       </div>
       <div class="fun-card fade-up">
-        <div class="fun-emoji">🎒</div>
+        <div class="fun-icon">
+          <svg viewBox="0 0 60 60">
+            <path d="M 14,22 L 14,46 Q 14,52 20,52 L 40,52 Q 46,52 46,46 L 46,22" fill="#a8d68a" stroke="#5a4838" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M 12,22 L 48,22 L 44,14 L 16,14 Z" fill="#6fa84a" stroke="#5a4838" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M 22,14 Q 22,6 30,6 Q 38,6 38,14" fill="none" stroke="#5a4838" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="30" cy="34" r="6" fill="#ffd966" stroke="#5a4838" stroke-width="2.5"/>
+          </svg>
+        </div>
         <div>
           <h4>毎日使える特別感</h4>
           <p>通学バッグや帽子に貼れば、お子さんも嬉しい毎日に。アイロンで貼るだけ、簡単な仕様です。</p>
         </div>
       </div>
       <div class="fun-card fade-up">
-        <div class="fun-emoji">👨‍👩‍👧</div>
+        <div class="fun-icon">
+          <svg viewBox="0 0 60 60">
+            <rect x="10" y="20" width="40" height="32" rx="3" fill="#f08a7a" stroke="#5a4838" stroke-width="3"/>
+            <rect x="6" y="18" width="48" height="6" fill="#c98ab8" stroke="#5a4838" stroke-width="3"/>
+            <rect x="28" y="18" width="4" height="34" fill="#5a4838"/>
+            <path d="M 30,18 Q 22,10 18,14 Q 16,18 24,18 Z" fill="#ffd966" stroke="#5a4838" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M 30,18 Q 38,10 42,14 Q 44,18 36,18 Z" fill="#ffd966" stroke="#5a4838" stroke-width="2.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <div>
           <h4>プレゼントにも最適</h4>
           <p>おじいちゃん・おばあちゃんへの贈り物にも。お孫さんが描いた絵のワッペンは、何よりのギフトに。</p>
@@ -1741,18 +2059,18 @@ footer {
   </div>
 </section>
 
-<!-- ── 事前アンケートの声 ── -->
+<!-- ── 事前アンケート ── -->
 <section class="kids-voice">
   <div class="container">
     <div class="section-label">PRE-LAUNCH SURVEY</div>
     <h2 class="section-title">こんな<span class="accent">サービス</span>があったらどう思う？</h2>
-    <p class="survey-lede">サービス開始前に、保護者の方に聞いてみました。<br>たくさんの「ほしい！」という声が集まりました。</p>
+    <p class="survey-lede">サービス開始前に、保護者の方に聞いてみました。<br>たくさんの「ほしい！」という声が森に集まりました。</p>
 
     <div class="bubble-grid">
       <div class="bubble-card b1 fade-up">
         <p class="bubble-quote">うちの子の絵、ワッペンになったら絶対カバンに付けたい！冷蔵庫の絵がずっと残せるなんて最高です。</p>
         <div class="bubble-by">
-          <div class="bubble-avatar" style="background: var(--pink);">👩</div>
+          <div class="bubble-avatar" style="background: var(--cream-deep);">👩</div>
           <span>30代・お母さま</span>
         </div>
         <div class="bubble-arrow"></div>
@@ -1761,7 +2079,7 @@ footer {
       <div class="bubble-card b2 fade-up">
         <p class="bubble-quote">息子の作品って捨てられなくて困っていたので、形として残せるのが嬉しい。おじいちゃんおばあちゃんへのプレゼントにしたい！</p>
         <div class="bubble-by">
-          <div class="bubble-avatar" style="background: var(--sky);">👨</div>
+          <div class="bubble-avatar" style="background: var(--moss);">👨</div>
           <span>30代・お父さま</span>
         </div>
         <div class="bubble-arrow"></div>
@@ -1770,7 +2088,7 @@ footer {
       <div class="bubble-card b3 fade-up">
         <p class="bubble-quote">子どもの誇らしげな顔が浮かびます。「ぼくの絵、ワッペンになるの！？」って絶対喜びます。価格も手ごろで嬉しい。</p>
         <div class="bubble-by">
-          <div class="bubble-avatar" style="background: var(--yellow);">👩</div>
+          <div class="bubble-avatar" style="background: var(--honey);">👩</div>
           <span>40代・お母さま</span>
         </div>
         <div class="bubble-arrow"></div>
@@ -1794,36 +2112,29 @@ footer {
   </div>
 </section>
 
-<!-- ── ワッペンギャラリー（横スライド） ── -->
+<!-- ── ギャラリー ── -->
 <section class="gallery" id="gallery">
   <div class="container">
     <div class="section-label">GALLERY</div>
-    <h2 class="section-title">こんな<span class="accent-sky">ワッペン</span>ができます</h2>
+    <h2 class="section-title">こんな<span class="accent-honey">ワッペン</span>ができます</h2>
     <p class="gallery-lede">実際に作ったワッペンの一部をご紹介。お子さんの絵がこんな風に大変身します！</p>
   </div>
 
   <div class="gallery-scroller-wrap">
     <button class="gallery-arrow gallery-arrow-prev" aria-label="前へ" onclick="scrollGallery(-1)">‹</button>
     <div class="gallery-scroller" id="galleryScroller">
-      <!-- カード1：ねこ -->
       <div class="gallery-card">
         <div class="gallery-photo">
-          <svg viewBox="0 0 200 200" style="background: #fff5e1;">
-            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#fff5e1" stroke="#e5d9c3" stroke-width="3" stroke-dasharray="5 3"/>
-            <g fill="none" stroke="#ff8fab" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 200 200" style="background: #fef5dc;">
+            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#fef5dc" stroke="#d4c4a3" stroke-width="3" stroke-dasharray="5 3"/>
+            <g fill="none" stroke="#f08a7a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M 60,110 Q 55,65 100,62 Q 145,65 140,110 Q 145,155 100,158 Q 55,155 60,110"/>
               <path d="M 70,82 L 60,46 L 86,72"/>
               <path d="M 130,82 L 140,46 L 114,72"/>
             </g>
-            <circle cx="84" cy="104" r="6" fill="#4a3a30"/>
-            <circle cx="116" cy="104" r="6" fill="#4a3a30"/>
-            <path d="M 90,128 Q 100,140 110,128" fill="none" stroke="#4a3a30" stroke-width="5" stroke-linecap="round"/>
-            <g stroke="#7ac3dc" stroke-width="4" stroke-linecap="round">
-              <line x1="42" y1="118" x2="28" y2="116"/>
-              <line x1="42" y1="128" x2="28" y2="128"/>
-              <line x1="158" y1="118" x2="172" y2="116"/>
-              <line x1="158" y1="128" x2="172" y2="128"/>
-            </g>
+            <circle cx="84" cy="104" r="6" fill="#5a4838"/>
+            <circle cx="116" cy="104" r="6" fill="#5a4838"/>
+            <path d="M 90,128 Q 100,140 110,128" fill="none" stroke="#5a4838" stroke-width="5" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="gallery-meta">
@@ -1832,18 +2143,16 @@ footer {
         </div>
       </div>
 
-      <!-- カード2：恐竜 -->
       <div class="gallery-card">
         <div class="gallery-photo">
-          <svg viewBox="0 0 200 200" style="background: #c1e8d3;">
-            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#c1e8d3" stroke="#4a3a30" stroke-width="3" stroke-dasharray="5 3"/>
-            <g fill="none" stroke="#4a8a3a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 200 200" style="background: #c4dfa7;">
+            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#c4dfa7" stroke="#5a4838" stroke-width="3" stroke-dasharray="5 3"/>
+            <g fill="none" stroke="#6fa84a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M 40,140 Q 30,130 35,110 Q 38,90 55,85 Q 65,55 90,55 Q 115,55 125,75 Q 145,80 155,100 Q 160,125 145,140 Q 130,150 100,148 Q 70,150 50,145 L 40,140 Z"/>
               <path d="M 55,85 L 50,75 M 70,75 L 65,65 M 85,72 L 80,62"/>
               <path d="M 155,100 L 175,110 L 165,125"/>
             </g>
-            <circle cx="110" cy="90" r="5" fill="#4a3a30"/>
-            <path d="M 105,108 Q 115,112 125,108" fill="none" stroke="#4a3a30" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="110" cy="90" r="5" fill="#5a4838"/>
           </svg>
         </div>
         <div class="gallery-meta">
@@ -1852,20 +2161,19 @@ footer {
         </div>
       </div>
 
-      <!-- カード3：お花 -->
       <div class="gallery-card">
         <div class="gallery-photo">
           <svg viewBox="0 0 200 200" style="background: #ffe9b3;">
-            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#ffe9b3" stroke="#4a3a30" stroke-width="3" stroke-dasharray="5 3"/>
-            <g fill="#ff8fab" stroke="#4a3a30" stroke-width="3">
+            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#ffe9b3" stroke="#5a4838" stroke-width="3" stroke-dasharray="5 3"/>
+            <g fill="#f08a7a" stroke="#5a4838" stroke-width="3">
               <ellipse cx="100" cy="65" rx="18" ry="22"/>
               <ellipse cx="68" cy="95" rx="22" ry="18"/>
               <ellipse cx="132" cy="95" rx="22" ry="18"/>
               <ellipse cx="80" cy="135" rx="20" ry="20"/>
               <ellipse cx="120" cy="135" rx="20" ry="20"/>
             </g>
-            <circle cx="100" cy="100" r="14" fill="#ffd966" stroke="#4a3a30" stroke-width="3"/>
-            <path d="M 100,150 Q 100,170 100,180" fill="none" stroke="#4a8a3a" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="100" cy="100" r="14" fill="#ffd966" stroke="#5a4838" stroke-width="3"/>
+            <path d="M 100,150 Q 100,170 100,180" fill="none" stroke="#6fa84a" stroke-width="5" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="gallery-meta">
@@ -1874,20 +2182,19 @@ footer {
         </div>
       </div>
 
-      <!-- カード4：シーサー -->
       <div class="gallery-card">
         <div class="gallery-photo">
-          <svg viewBox="0 0 200 200" style="background: #ffc4d6;">
-            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#ffc4d6" stroke="#4a3a30" stroke-width="3" stroke-dasharray="5 3"/>
-            <g fill="none" stroke="#d6541e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 200 200" style="background: #d4ebf4;">
+            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#d4ebf4" stroke="#5a4838" stroke-width="3" stroke-dasharray="5 3"/>
+            <g fill="none" stroke="#f08a7a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M 100,60 Q 60,64 56,110 Q 52,150 100,156 Q 148,150 144,110 Q 140,64 100,60"/>
               <path d="M 70,84 Q 60,60 76,56"/>
               <path d="M 130,84 Q 140,60 124,56"/>
             </g>
-            <circle cx="84" cy="100" r="6" fill="#ffd966" stroke="#4a3a30" stroke-width="3"/>
-            <circle cx="116" cy="100" r="6" fill="#ffd966" stroke="#4a3a30" stroke-width="3"/>
-            <path d="M 80,130 L 100,144 L 120,130" fill="none" stroke="#4a3a30" stroke-width="5" stroke-linejoin="round"/>
-            <path d="M 92,124 L 100,132 L 108,124" fill="none" stroke="#d6541e" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="84" cy="100" r="6" fill="#ffd966" stroke="#5a4838" stroke-width="3"/>
+            <circle cx="116" cy="100" r="6" fill="#ffd966" stroke="#5a4838" stroke-width="3"/>
+            <path d="M 80,130 L 100,144 L 120,130" fill="none" stroke="#5a4838" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M 92,124 L 100,132 L 108,124" fill="none" stroke="#f08a7a" stroke-width="4" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="gallery-meta">
@@ -1896,17 +2203,16 @@ footer {
         </div>
       </div>
 
-      <!-- カード5：おうち -->
       <div class="gallery-card">
         <div class="gallery-photo">
-          <svg viewBox="0 0 200 200" style="background: #b4dceb;">
-            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#b4dceb" stroke="#4a3a30" stroke-width="3" stroke-dasharray="5 3"/>
-            <path d="M 50,140 L 50,90 L 100,55 L 150,90 L 150,140 Z" fill="#fff5e1" stroke="#4a3a30" stroke-width="5" stroke-linejoin="round"/>
-            <path d="M 50,90 L 100,55 L 150,90" fill="#ff8fab" stroke="#4a3a30" stroke-width="5" stroke-linejoin="round"/>
-            <rect x="86" y="106" width="28" height="34" fill="#ff8fab" stroke="#4a3a30" stroke-width="3"/>
-            <circle cx="110" cy="124" r="2" fill="#4a3a30"/>
-            <rect x="62" y="100" width="16" height="16" fill="#ffd966" stroke="#4a3a30" stroke-width="3"/>
-            <rect x="122" y="100" width="16" height="16" fill="#ffd966" stroke="#4a3a30" stroke-width="3"/>
+          <svg viewBox="0 0 200 200" style="background: #a8d68a;">
+            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#a8d68a" stroke="#5a4838" stroke-width="3" stroke-dasharray="5 3"/>
+            <path d="M 50,140 L 50,90 L 100,55 L 150,90 L 150,140 Z" fill="#fef5dc" stroke="#5a4838" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M 50,90 L 100,55 L 150,90" fill="#f08a7a" stroke="#5a4838" stroke-width="5" stroke-linejoin="round"/>
+            <rect x="86" y="106" width="28" height="34" fill="#f08a7a" stroke="#5a4838" stroke-width="3"/>
+            <circle cx="110" cy="124" r="2" fill="#5a4838"/>
+            <rect x="62" y="100" width="16" height="16" fill="#ffd966" stroke="#5a4838" stroke-width="3"/>
+            <rect x="122" y="100" width="16" height="16" fill="#ffd966" stroke="#5a4838" stroke-width="3"/>
           </svg>
         </div>
         <div class="gallery-meta">
@@ -1915,17 +2221,16 @@ footer {
         </div>
       </div>
 
-      <!-- カード6：名前 -->
       <div class="gallery-card">
         <div class="gallery-photo">
-          <svg viewBox="0 0 200 200" style="background: #d5c5e8;">
-            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#d5c5e8" stroke="#4a3a30" stroke-width="3" stroke-dasharray="5 3"/>
-            <text x="100" y="115" text-anchor="middle" font-family="Fredoka" font-style="italic" font-size="46" font-weight="700" fill="#d6541e">SAKI</text>
+          <svg viewBox="0 0 200 200" style="background: #c98ab8;">
+            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#c98ab8" stroke="#5a4838" stroke-width="3" stroke-dasharray="5 3"/>
+            <text x="100" y="115" text-anchor="middle" font-family="Fredoka" font-style="italic" font-size="46" font-weight="700" fill="#5a4838">SAKI</text>
             <g stroke="#ffd966" stroke-width="4" fill="none">
               <path d="M 40,140 Q 100,156 160,140"/>
               <path d="M 50,148 Q 100,160 150,148"/>
             </g>
-            <g fill="#ff8fab">
+            <g fill="#f08a7a">
               <circle cx="50" cy="75" r="6"/>
               <circle cx="150" cy="75" r="6"/>
               <circle cx="100" cy="55" r="5"/>
@@ -1938,12 +2243,11 @@ footer {
         </div>
       </div>
 
-      <!-- カード7：太陽 -->
       <div class="gallery-card">
         <div class="gallery-photo">
-          <svg viewBox="0 0 200 200" style="background: #fff5e1;">
-            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#fff5e1" stroke="#4a3a30" stroke-width="3" stroke-dasharray="5 3"/>
-            <circle cx="100" cy="100" r="32" fill="#ffd966" stroke="#4a3a30" stroke-width="5"/>
+          <svg viewBox="0 0 200 200" style="background: #fef5dc;">
+            <ellipse cx="100" cy="100" rx="78" ry="68" fill="#fef5dc" stroke="#5a4838" stroke-width="3" stroke-dasharray="5 3"/>
+            <circle cx="100" cy="100" r="32" fill="#ffd966" stroke="#5a4838" stroke-width="5"/>
             <g stroke="#ffd966" stroke-width="7" stroke-linecap="round">
               <line x1="100" y1="40" x2="100" y2="55"/>
               <line x1="100" y1="145" x2="100" y2="160"/>
@@ -1954,9 +2258,9 @@ footer {
               <line x1="142" y1="58" x2="132" y2="68"/>
               <line x1="68" y1="132" x2="58" y2="142"/>
             </g>
-            <circle cx="92" cy="95" r="3" fill="#4a3a30"/>
-            <circle cx="108" cy="95" r="3" fill="#4a3a30"/>
-            <path d="M 90,108 Q 100,116 110,108" fill="none" stroke="#4a3a30" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="92" cy="95" r="3" fill="#5a4838"/>
+            <circle cx="108" cy="95" r="3" fill="#5a4838"/>
+            <path d="M 90,108 Q 100,116 110,108" fill="none" stroke="#5a4838" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="gallery-meta">
@@ -1966,9 +2270,6 @@ footer {
       </div>
     </div>
     <button class="gallery-arrow gallery-arrow-next" aria-label="次へ" onclick="scrollGallery(1)">›</button>
-  </div>
-  <div class="container">
-    <p class="gallery-note">※ 上記は実際に制作したワッペンのサンプルです。お子さんの絵の通りに、世界に一つのワッペンをお作りします。</p>
   </div>
 </section>
 
@@ -1987,7 +2288,6 @@ footer {
         </div>
         <div class="faq-a">もちろん大丈夫です！むしろ、お子さんならではの自由な線こそが世界に一つの作品になります。上手・下手という基準はありません。</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">
           <span class="q-mark">Q</span>
@@ -1996,7 +2296,6 @@ footer {
         </div>
         <div class="faq-a">年齢制限はありません。クレヨンを握って線が描ける幼児から、小学校6年生まで、どなたでもOKです。先行予約オファーは小学生以下のお子様限定となります。</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">
           <span class="q-mark">Q</span>
@@ -2005,7 +2304,6 @@ footer {
         </div>
         <div class="faq-a">アイロンで貼るタイプなので、布製品なら基本どこでもOKです。通学バッグ・帽子・Tシャツ・ハンカチ・体操服袋など、お子さんのお気に入りに貼ってください。</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">
           <span class="q-mark">Q</span>
@@ -2014,7 +2312,6 @@ footer {
         </div>
         <div class="faq-a">ご注文確定（お支払い完了）から、2〜3週間でご自宅にお届けします。職人による手作りのため、少しお時間をいただきます。</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">
           <span class="q-mark">Q</span>
@@ -2023,15 +2320,91 @@ footer {
         </div>
         <div class="faq-a">LINEで予約後、決済URLをお送りします。クレジットカード、PayPay等のQR決済に対応しています。</div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="faq-item">
-        <div class="faq-q">
-          <span class="q-mark">Q</span>
-          <span>洗濯しても大丈夫？</span>
-          <span class="q-icon">＋</span>
+<!-- ── ししゅうの森｜クリエイター募集 ── -->
+<section class="forest-creator" id="creator">
+  <div class="container">
+    <div class="forest-header">
+      <div class="forest-emoji">🌲</div>
+      <div class="section-label" style="color: var(--leaf-deep);">ANOTHER SERVICE</div>
+      <h2 class="forest-title">
+        <span class="forest-brand">ししゅうの森・クリエイター</span><br>
+        <span class="forest-sub">あなたの刺繍作品を、森に並べよう</span>
+      </h2>
+      <p class="forest-lede">
+        趣味で刺繍を作っているあなたへ。あなたの作品を、ECサイトと沖縄のリアル店舗（POPUP）で販売しませんか？面倒な販売管理は私たちが代行。あなたは作品を作ることに集中できます。
+      </p>
+    </div>
+
+    <div class="forest-merits">
+      <div class="forest-merit fade-up">
+        <div class="merit-icon">
+          <svg viewBox="0 0 60 60">
+            <path d="M 16,22 L 14,18 L 10,18 L 12,28 L 14,52 Q 14,54 16,54 L 44,54 Q 46,54 46,52 L 48,28 L 50,18 L 46,18 L 44,22" fill="#f08a7a" stroke="#5a4838" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M 22,22 Q 22,14 30,14 Q 38,14 38,22" fill="none" stroke="#5a4838" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="30" cy="36" r="6" fill="#ffd966" stroke="#5a4838" stroke-width="2"/>
+          </svg>
         </div>
-        <div class="faq-a">洗濯OKです。家庭用洗濯機で通常通り洗っていただけます（裏返してネット使用推奨）。ただし、長持ちさせるためにはアイロンでしっかり接着してご使用ください。</div>
+        <h4>EC＋実店舗で販売</h4>
+        <p>自社ECサイトと沖縄リゾートホテルのPOPUP店舗で、あなたの作品を販売。観光客の目にも触れるチャンス。</p>
       </div>
+      <div class="forest-merit fade-up">
+        <div class="merit-icon">
+          <svg viewBox="0 0 60 60">
+            <circle cx="30" cy="30" r="22" fill="#ffd966" stroke="#5a4838" stroke-width="2.5"/>
+            <text x="30" y="38" text-anchor="middle" fill="#5a4838" font-family="Fredoka" font-size="22" font-weight="700">0%</text>
+            <path d="M 16,16 L 44,44" stroke="#f08a7a" stroke-width="3" stroke-linecap="round" opacity="0.3"/>
+          </svg>
+        </div>
+        <h4>販売手数料は0円</h4>
+        <p>月額利用料だけで、販売手数料は一切いただきません。売れた分はすべてあなたの収益になります。</p>
+      </div>
+      <div class="forest-merit fade-up">
+        <div class="merit-icon">
+          <svg viewBox="0 0 60 60">
+            <ellipse cx="20" cy="40" rx="10" ry="12" fill="#a8d68a" stroke="#5a4838" stroke-width="2.5"/>
+            <ellipse cx="40" cy="40" rx="10" ry="12" fill="#a8d68a" stroke="#5a4838" stroke-width="2.5"/>
+            <ellipse cx="30" cy="32" rx="14" ry="16" fill="#6fa84a" stroke="#5a4838" stroke-width="2.5"/>
+            <line x1="30" y1="45" x2="30" y2="56" stroke="#5a4838" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="22" cy="28" r="2.5" fill="#ffd966" stroke="#5a4838" stroke-width="1.5"/>
+            <circle cx="38" cy="30" r="2.5" fill="#f08a7a" stroke="#5a4838" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h4>仲間と一緒に成長</h4>
+        <p>「ししゅうの森」は刺繍クリエイターのコミュニティ。同じ趣味の仲間と繋がり、技術や情報を交換できます。</p>
+      </div>
+    </div>
+
+    <div class="forest-pricing fade-up">
+      <div class="forest-tag">🌟 7月クリエイター募集中（30名限定）</div>
+      <h3 class="forest-pricing-title">参加プラン</h3>
+      <div class="forest-price-grid forest-price-single">
+        <div class="forest-price-block">
+          <div class="forest-price-label">月額利用料</div>
+          <div class="forest-price-num">¥3,000<span>/月</span></div>
+          <div class="forest-price-note">作品の出品数は無制限<br>販売手数料は0円</div>
+        </div>
+      </div>
+      <ul class="forest-features">
+        <li><span class="check">✓</span>初期費用ゼロ</li>
+        <li><span class="check">✓</span>販売手数料0円</li>
+        <li><span class="check">✓</span>EC出品サポート</li>
+        <li><span class="check">✓</span>POPUP店舗で実物展示</li>
+        <li><span class="check">✓</span>出品数無制限</li>
+        <li><span class="check">✓</span>クリエイターコミュニティ</li>
+      </ul>
+      <p style="margin-top: 20px; font-size: 12px; color: var(--ink-soft); font-weight: 600; line-height: 1.8;">
+        ※ ECで売れた商品の発送は、クリエイター様より直接お客様へお送りいただきます。
+      </p>
+    </div>
+
+    <div class="forest-cta">
+      <p class="forest-cta-text">気になった方は、まずは公式LINEで詳細をご案内します！</p>
+      <a href="https://lin.ee/ttdya8W" target="_blank" rel="noopener" class="btn-line">クリエイターに応募する</a>
+      <p class="forest-cta-note">※ LINE追加後、メッセージで「クリエイター応募」とお送りください<br>※ 8/1サービス開始予定 / 7月の先行枠は30名限定</p>
     </div>
   </div>
 </section>
@@ -2059,8 +2432,8 @@ footer {
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">
-        🎨 ししゅうのいとのさん
-        <small>Scribble Embroidery, Okinawa</small>
+        🌳 ししゅうの森
+        <small>Shishu no Mori, Okinawa</small>
       </div>
       <p class="footer-desc">
         お子さんが描いたらくがきを、世界に一つの刺繍ワッペンに。沖縄から、新しい家族の思い出づくりを始めます。
@@ -2075,13 +2448,12 @@ footer {
         <a href="#">特定商取引法に基づく表記</a>
         <a href="#">運営会社</a>
       </div>
-      <div class="footer-copy">© 2026 ししゅうのいとのさん / Scribble Embroidery, Okinawa</div>
+      <div class="footer-copy">© 2026 ししゅうの森 / Shishu no Mori, Okinawa</div>
     </div>
   </div>
 </footer>
 
 <script>
-// ── スクロール出現アニメーション ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
@@ -2092,14 +2464,12 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// ── FAQ アコーディオン ──
 document.querySelectorAll('.faq-item').forEach(item => {
   item.querySelector('.faq-q').addEventListener('click', () => {
     item.classList.toggle('open');
   });
 });
 
-// ── ギャラリー横スクロール ──
 function scrollGallery(direction) {
   const scroller = document.getElementById('galleryScroller');
   if (!scroller) return;
@@ -2107,20 +2477,17 @@ function scrollGallery(direction) {
   scroller.scrollBy({ left: cardWidth * direction, behavior: 'smooth' });
 }
 
-// ── 進捗バーアニメーション（30名/1000名 = 3%） ──
 const RESERVED = 30;
 const TOTAL = 1000;
-const PERCENT = (RESERVED / TOTAL) * 100; // 3%
+const PERCENT = (RESERVED / TOTAL) * 100;
 
 const progressObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      // バー伸び
       const bar = document.getElementById('progressBar');
       if (bar) {
         setTimeout(() => { bar.style.width = PERCENT + '%'; }, 200);
       }
-      // 数字カウントアップ
       const numEl = document.getElementById('reservedNum');
       const remainEl = document.getElementById('remainNum');
       if (numEl && remainEl) {
@@ -2140,7 +2507,6 @@ function animateCount(el, from, to, duration, withComma = false) {
   const step = (now) => {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
-    // easeOutQuart
     const eased = 1 - Math.pow(1 - progress, 4);
     const current = Math.round(from + (to - from) * eased);
     el.textContent = withComma ? current.toLocaleString() : current;
@@ -2149,11 +2515,9 @@ function animateCount(el, from, to, duration, withComma = false) {
   requestAnimationFrame(step);
 }
 
-// ── 本日予約数をランダムでちょい増やす（リアルタイム風） ──
 let todayCount = 8;
 const todayEl = document.getElementById('todayCount');
 function tickTodayCount() {
-  // 30〜90秒に1回、本日カウントを+1
   const delay = 30000 + Math.random() * 60000;
   setTimeout(() => {
     todayCount += 1;
